@@ -15,8 +15,26 @@ from flask_cors import CORS  # Import CORS for Flask
 # So we are using this to determine if the image is a cat or not.
 def is_cat(x): return x[0].isupper()  
 
-model_path = Path("model/cat_model.pkl")
-learn = load_learner(model_path)
+# Use environment variable to switch between local/remote
+USE_REMOTE_MODEL = os.getenv("USE_REMOTE_MODEL", "False") == "True"
+
+model_dir = Path("model")
+model_path = model_dir / "cat_model.pkl"
+model_url = "https://huggingface.co/datasets/YOUR_USERNAME/YOUR_REPO/resolve/main/a_cat_model.pkl"
+
+os.makedirs(model_dir, exist_ok=True)
+
+if USE_REMOTE_MODEL and not model_path.exists():
+    print("Downloading model from Hugging Face...")
+    r = requests.get(model_url)
+    r.raise_for_status()
+    with open(model_path, "wb") as f:
+        f.write(r.content)
+    print("Model downloaded successfully.")
+
+
+learn = load_learner(model_path, cpu=True)
+
 
 app = Flask(__name__)
 CORS(app) # Allow cross-origin requests / This enables CORS for all routes
