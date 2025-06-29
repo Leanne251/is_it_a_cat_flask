@@ -20,7 +20,7 @@ USE_REMOTE_MODEL = os.getenv("USE_REMOTE_MODEL", "False") == "True"
 
 model_dir = Path("model")
 model_path = model_dir / "cat_model.pkl"
-model_url = "https://huggingface.co/datasets/YOUR_USERNAME/YOUR_REPO/resolve/main/a_cat_model.pkl"
+model_url = "https://huggingface.co/datasets/Leanne251/is_it_a_cat_model/resolve/main/a_cat_model.pkl"
 
 os.makedirs(model_dir, exist_ok=True)
 
