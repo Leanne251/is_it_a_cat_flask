@@ -15,7 +15,7 @@ from flask_cors import CORS  # Import CORS for Flask
 # So we are using this to determine if the image is a cat or not.
 def is_cat(x): return x[0].isupper()  
 
-model_path = Path("model/a_cat_model.pkl")
+model_path = Path("model/cat_model.pkl")
 learn = load_learner(model_path)
 
 app = Flask(__name__)
