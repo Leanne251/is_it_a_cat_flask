@@ -1,7 +1,7 @@
 
 import fastai
 from flask import Flask, request, jsonify
-from fastai.vision.all import *
+from fastai.learner import load_learner
 import os
 from pathlib import Path
 import numpy as np
