@@ -9,6 +9,7 @@ import torch
 from flask_cors import CORS  # Import CORS for Flask
 # import builtins AI recommended but doesnt work
 import __main__
+import requests
 
 
 # Couldnt read this function from the model.pkl file.
