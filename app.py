@@ -7,15 +7,22 @@ from pathlib import Path
 import numpy as np
 import torch
 from flask_cors import CORS  # Import CORS for Flask
-import builtins
+# import builtins AI recommended but doesnt work
+import __main__
+
 
 # Couldnt read this function from the model.pkl file.
 # its saying if the first letter is uppercase then it is a cat.
 # This is how the oxford list of pets is structured.
 # So we are using this to determine if the image is a cat or not.
-def is_cat(x): return x[0].isupper()  
 
-builtins.is_cat = is_cat
+# def getImages(d): return##
+# __main__.getImages = getImages
+
+def is_cat(x): return x[0].isupper() 
+__main__.is_cat = is_cat
+
+# builtins.is_cat = is_cat
 
 # Use environment variable to switch between local/remote
 USE_REMOTE_MODEL = os.getenv("USE_REMOTE_MODEL", "False") == "True"
