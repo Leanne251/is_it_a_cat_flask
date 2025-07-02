@@ -2,6 +2,7 @@
 import fastai
 from flask import Flask, request, jsonify
 from fastai.learner import load_learner
+from fastai.vision.all import PILImage
 import os
 from pathlib import Path
 import numpy as np
@@ -56,6 +57,8 @@ def hello():
 
 @app.route('/predict', methods=['POST'])
 def predict():
+
+    print("Received request for prediction")
     
     if 'image' not in request.files:
         return jsonify({'error': 'No image uploaded'}), 400
@@ -64,6 +67,7 @@ def predict():
     print(f"Received image: {img_file.filename}")
 
     try:
+        print("hello")
         img = PILImage.create(img_file)
         print(f"Image created successfully: {img_file.filename}")
     except Exception as e:
@@ -83,8 +87,12 @@ def predict():
    
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # 5000 as fallback
+    port = int(os.environ.get("PORT", 5050))  # 5050 as fallback
     app.run(host="0.0.0.0", port=port)
+
+
+# if __name__ == "__main__":
+#     app.run(debug=True, port=5050)
 
 
 
