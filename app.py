@@ -86,9 +86,21 @@ def predict():
     })
    
 
+# iface = gr.Interface(
+# fn=predict,
+# inputs=gr.Image(type="pil"),
+# outputs=gr.Label(num_top_classes=1),
+# title="Is it a cat?",
+# description="Upload an image to find out if it is a cat or not."
+# )
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5050))  # 5050 as fallback
     app.run(host="0.0.0.0", port=port)
+
+# if __name__ == "__main__":
+#     app.run(debug=True)
+
 
 
 # if __name__ == "__main__":

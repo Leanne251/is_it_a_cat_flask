@@ -1,0 +1,8 @@
+services:
+  flask:
+    build:
+      context: ./flask
+    ports:
+      - "5050:7860"  # host:container
+    working_dir: /app
+    command: python app.py
